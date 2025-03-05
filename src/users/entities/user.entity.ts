@@ -1,33 +1,35 @@
-import { RolesUsuarios } from "src/enums/Roles-Usuarios.enum";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Exclude } from 'class-transformer';
+import { RolesUsuario } from '../../enums/Roles-Usuarios.enum';
 
-@Entity()
+@Entity('usuarios')
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({nullable: false})
-    name: string;
+  @Column({ length: 100 })
+  nombre: string;
 
-    @Column({ unique: true , nullable: false})
-    email: string;
+  @Column({ unique: true })
+  email: string;
 
-    @Column({ nullable: false})
-    password: string;
+  @Column()
+  @Exclude({ toPlainOnly: true }) // Excluir campo al serializar
+  password: string;
 
-    @Column({ nullable: false})
-    rol: RolesUsuarios;
+  @Column({ 
+    type: 'enum',
+    enum: RolesUsuario,
+    default: RolesUsuario.USUARIO
+  })
+  rol: RolesUsuario;
 
-    @Column({ default: true ,nullable: false})
-    isActive: boolean;
+  @Column({ default: true })
+  activo: boolean;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @CreateDateColumn()
+  fechaCreacion: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
-
-    @Column({ default: 0 ,nullable: false})
-    puntos: number;
-
+  @UpdateDateColumn()
+  fechaActualizacion: Date;
 }

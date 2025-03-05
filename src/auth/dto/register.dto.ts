@@ -1,7 +1,6 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
-import { RolesUsuario } from '../../enums/Roles-Usuarios.enum';
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-export class CreateUserDto {
+export class RegisterDto {
   @IsNotEmpty({ message: 'El nombre es requerido' })
   @IsString({ message: 'El nombre debe ser una cadena de texto' })
   nombre: string;
@@ -14,8 +13,4 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'La contraseña es requerida' })
   @MinLength(6, { message: 'La contraseña debe tener al menos 6 caracteres' })
   password: string;
-
-  @IsOptional()
-  @IsEnum(RolesUsuario, { message: 'El rol proporcionado no es válido' })
-  rol?: RolesUsuario;
 }
