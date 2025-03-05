@@ -14,15 +14,15 @@ import { AuthModule } from './auth/auth.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'mysql',
+        type: 'postgres',
         host: configService.get('DB_HOST'),
-        port: configService.get('DB_PORT', 3306),
+        port: configService.get('DB_PORT', 5432),
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: process.env.NODE_ENV !== 'production',
-        migrationsRun: process.env.NODE_ENV === 'production',
+        synchronize: process.env.NODE_ENV !== 'production', // Solo sincronizar automáticamente en desarrollo
+        migrationsRun: process.env.NODE_ENV === 'production', // Ejecutar migraciones automáticamente en producción
       }),
     }),
     UsersModule,

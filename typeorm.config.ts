@@ -2,16 +2,16 @@ import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
 import * as path from 'path';
 
-// Asegurarse de cargar las variables de entorno
+// Ensure environment variables are loaded
 config();
 
 const dataSource = new DataSource({
-  type: 'mysql',
-  host: process.env.DB_HOST || 'localhost',
-  port: +(process.env.DB_PORT || 3306),
-  username: process.env.DB_USERNAME || 'root',
-  password: process.env.DB_PASSWORD || 'root',
-  database: process.env.DB_NAME || 'econet_db',
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'postgres',
+  password: 'postgres123',  // Using the exact password we confirmed in the container
+  database: 'econet_db',
   entities: [path.join(__dirname, '**', '*.entity{.ts,.js}')],
   migrations: [path.join(__dirname, 'migrations', '*{.ts,.js}')],
   migrationsTableName: 'migrations',
