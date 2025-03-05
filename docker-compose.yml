@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: econet-postgres
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - econet-network
+    restart: unless-stopped
+
+networks:
+  econet-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    name: econet-postgres-data
