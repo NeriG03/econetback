@@ -10,13 +10,13 @@ export class SeedAdminUser1714840100000 implements MigrationInterface {
 
         // Insert admin user
         await queryRunner.query(`
-            INSERT INTO "usuarios" ("nombre", "email", "password", "rol", "activo")
-            VALUES ('Administrador', 'admin@econet.com', '${hashedPassword}', 'admin', true)
-        `);
+            INSERT INTO \`usuarios\` (\`nombre\`, \`email\`, \`password\`, \`rol\`, \`activo\`)
+            VALUES ('Administrador', 'admin@econet.com', ?, 'admin', 1)
+        `, [hashedPassword]);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         // Remove admin user
-        await queryRunner.query(`DELETE FROM "usuarios" WHERE "email" = 'admin@econet.com'`);
+        await queryRunner.query(`DELETE FROM \`usuarios\` WHERE \`email\` = 'admin@econet.com'`);
     }
 }
