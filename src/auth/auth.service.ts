@@ -15,7 +15,7 @@ export class AuthService {
 
   async register(registerDto: RegisterDto) {
     const { email, password } = registerDto;
-    
+
     // Verificar si el usuario ya existe
     const userExists = await this.usersService.findByEmail(email);
     if (userExists) {
@@ -91,10 +91,7 @@ export class AuthService {
     return bcrypt.hash(password, salt);
   }
 
-  private async comparePasswords(
-    plainPassword: string,
-    hashedPassword: string,
-  ): Promise<boolean> {
+  private async comparePasswords(plainPassword: string, hashedPassword: string): Promise<boolean> {
     return bcrypt.compare(plainPassword, hashedPassword);
   }
 }
