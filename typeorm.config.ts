@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
 import * as path from 'path';
 
+// Asegurarse de cargar las variables de entorno
 config();
 
 const dataSource = new DataSource({
