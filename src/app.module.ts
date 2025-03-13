@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ManualsModule } from './manuals/manuals.module';
 
 @Module({
   imports: [
@@ -24,6 +25,8 @@ import { AuthModule } from './auth/auth.module';
         synchronize: process.env.NODE_ENV !== 'production',
         migrationsRun: process.env.NODE_ENV === 'production',
         driver: require('mysql2'),
+        logging: true,
+        logger: 'advanced-console',
         extra: {
           decimalNumbers: true,
         }
@@ -31,6 +34,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    ManualsModule,
   ],
   controllers: [],
   providers: [],
