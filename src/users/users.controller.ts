@@ -16,7 +16,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  @LogRequest()
+  //@LogRequest()
   //@UseGuards(RolesGuard)
   //@Roles(RolesUsuario.ADMIN)
   create(@Body() createUserDto: CreateUserDto) {
@@ -24,7 +24,7 @@ export class UsersController {
   }
 
   @Get()
-  @LogRequest()
+  //@LogRequest()
   //@UseGuards(RolesGuard)
   //@Roles(RolesUsuario.ADMIN)
   findAll() {
@@ -32,13 +32,13 @@ export class UsersController {
   }
 
   @Get('profile')
-  @LogRequest()
+  //@LogRequest()
   getProfile(@CurrentUser() user: User) {
     return user;
   }
 
   @Get(':id')
-  @LogRequest()
+  //@LogRequest()
   //@UseGuards(RolesGuard)
   //@Roles(RolesUsuario.ADMIN)
   findOne(@Param('id') id: string) {
@@ -46,7 +46,7 @@ export class UsersController {
   }
 
   @Patch(':id')
-  @LogRequest()
+  //@LogRequest()
   //@UseGuards(RolesGuard)
   //@Roles(RolesUsuario.ADMIN)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -54,7 +54,7 @@ export class UsersController {
   }
 
   @Delete(':id')
-  @LogRequest()
+  //@LogRequest()
   //@UseGuards(RolesGuard)
   //@Roles(RolesUsuario.ADMIN)
   remove(@Param('id') id: string) {
