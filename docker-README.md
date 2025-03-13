@@ -10,17 +10,20 @@ Este documento explica cómo ejecutar el proyecto EcoNet Backend utilizando Dock
 ## Inicio rápido
 
 1. Clona el repositorio:
+
 ```bash
 git clone <URL_DEL_REPOSITORIO>
 cd econetback
 ```
 
 2. Configura el archivo `.env`:
+
    - Puedes utilizar el archivo `.env-example` existente como punto de partida
    - Para desarrollo, no necesitas modificar nada
    - Para producción, cambia los valores según corresponda
 
 3. Inicia los contenedores:
+
 ```bash
 docker-compose up -d
 ```
@@ -32,6 +35,7 @@ docker-compose up -d
 ## Comandos útiles
 
 ### Ver logs
+
 ```bash
 # Ver logs de todos los servicios
 docker-compose logs
@@ -44,19 +48,28 @@ docker-compose logs postgres
 ```
 
 ### Detener los contenedores
+
 ```bash
 docker-compose down
 ```
 
 ### Detener y eliminar volúmenes (CUIDADO: Esto borrará la base de datos)
+
 ```bash
 docker-compose down -v
 ```
 
 ### Reconstruir la aplicación después de cambios
+
 ```bash
 docker-compose build api
 docker-compose up -d api
+```
+
+### Detener contenedores, una vez hecho se recontruye la aplicación (ponle el '-v' en compose down si quieres eliminar volúmenes)
+
+```bash
+docker compose down && docker compose up --build ; 1 > $null; start-sleep -milliseconds 150
 ```
 
 ## Manejo de migraciones
@@ -81,6 +94,7 @@ Para más detalles sobre las migraciones, consulta el archivo `migrations/README
 ## Acceso a la base de datos
 
 Para conectarte a la base de datos desde una herramienta como DBeaver o pgAdmin:
+
 - Host: localhost
 - Puerto: 5432
 - Base de datos: econet_db (o el valor de DB_NAME en tu .env)
