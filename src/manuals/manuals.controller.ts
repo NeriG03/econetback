@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/
 import { ManualsService } from './manuals.service';
 import { CreateManualDto } from './dto/create-manual.dto';
 import { UpdateManualDto } from './dto/update-manual.dto';
-import { LogRequest } from 'src/decorators/log-request-decorator/log-request-decorator.decorator';
+import { LogRequest } from 'src/decorators/log-request-decorator.decorator';
 import { Request } from 'express';
 import { Manual } from './entities/manual.entity';
 

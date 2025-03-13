@@ -8,7 +8,7 @@ import { Roles } from '../auth/auth-decorators/roles.decorator';
 import { RolesUsuario } from '../enums/Roles-Usuarios.enum';
 import { CurrentUser } from '../auth/auth-decorators/current-user.decorator';
 import { User } from './entities/user.entity';
-import { LogRequest } from 'src/decorators/log-request-decorator/log-request-decorator.decorator';
+import { LogRequest } from 'src/decorators/log-request-decorator.decorator';
 
 @Controller('users')
 //@UseGuards(JwtAuthGuard)
