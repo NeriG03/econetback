@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ManualsModule } from './manuals/manuals.module';
 
 @Module({
   imports: [
@@ -21,12 +22,19 @@ import { AuthModule } from './auth/auth.module';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: process.env.NODE_ENV !== 'production', // Solo sincronizar automáticamente en desarrollo
-        migrationsRun: process.env.NODE_ENV === 'production', // Ejecutar migraciones automáticamente en producción
+        synchronize: process.env.NODE_ENV !== 'production',
+        migrationsRun: process.env.NODE_ENV === 'production',
+        driver: require('mysql2'),
+        logging: true,
+        logger: 'advanced-console',
+        extra: {
+          decimalNumbers: true,
+        }
       }),
     }),
     UsersModule,
     AuthModule,
+    ManualsModule,
   ],
   controllers: [],
   providers: [],
