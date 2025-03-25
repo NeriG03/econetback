@@ -1,6 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { RolesUsuario } from '../../enums/Roles-Usuarios.enum';
+import { Notice } from 'src/notices/entities/notice.entity';
 
 @Entity('usuarios')
 export class User {
@@ -14,13 +22,13 @@ export class User {
   email: string;
 
   @Column()
-  @Exclude({ toPlainOnly: true }) // Excluir campo al serializar
+  @Exclude({ toPlainOnly: true })
   password: string;
 
-  @Column({ 
+  @Column({
     type: 'enum',
     enum: RolesUsuario,
-    default: RolesUsuario.USUARIO
+    default: RolesUsuario.USER,
   })
   rol: RolesUsuario;
 
@@ -32,4 +40,7 @@ export class User {
 
   @UpdateDateColumn()
   fechaActualizacion: Date;
+
+  @OneToMany(() => Notice, notice => notice.user)
+  notices: Notice[];
 }

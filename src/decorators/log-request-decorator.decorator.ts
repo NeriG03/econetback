@@ -117,7 +117,7 @@ export function LogRequest() {
           ),
         );
 
-        throw error; // Re-throw to maintain normal error handling
+        throw error; 
       }
     };
     return descriptor;
