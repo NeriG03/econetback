@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ManualsModule } from './manuals/manuals.module';
 import { NoticesModule } from './notices/notices.module';
+import { ActivitiesModule } from './activities/activities.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { NoticesModule } from './notices/notices.module';
     AuthModule,
     ManualsModule,
     NoticesModule,
+    ActivitiesModule,
   ],
   controllers: [],
   providers: [],
