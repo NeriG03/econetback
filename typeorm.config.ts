@@ -15,7 +15,8 @@ const dataSource = new DataSource({
   entities: [path.join(__dirname, '**', '*.entity{.ts,.js}')],
   migrations: [path.join(__dirname, 'migrations', '*{.ts,.js}')],
   migrationsTableName: 'migrations',
-  synchronize: false,
+  synchronize: false, // Solo para desarrollo, no usar en producción
+  //migrationsRun: true, // Ejecutar migraciones automáticamente al iniciar la aplicación
 });
 
 export default dataSource;
