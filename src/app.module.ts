@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { ManualsModule } from './manuals/manuals.module';
 import { NoticesModule } from './notices/notices.module';
 import { ActivitiesModule } from './activities/activities.module';
+import { UserActivitiesModule } from './user-activities/user-activities.module';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { ActivitiesModule } from './activities/activities.module';
         logger: 'advanced-console',
         extra: {
           decimalNumbers: true,
-        }
+        },
       }),
     }),
     UsersModule,
@@ -39,6 +40,7 @@ import { ActivitiesModule } from './activities/activities.module';
     ManualsModule,
     NoticesModule,
     ActivitiesModule,
+    UserActivitiesModule,
   ],
   controllers: [],
   providers: [],

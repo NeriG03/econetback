@@ -1,4 +1,7 @@
+import { Optional } from '@nestjs/common';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { User } from 'src/users/entities/user.entity';
+import { DeepPartial } from 'typeorm';
 
 export class CreateManualDto {
   @IsNotEmpty()
@@ -40,4 +43,7 @@ export class CreateManualDto {
   @IsNotEmpty()
   @IsString()
   otros: string;
+
+  @IsNotEmpty()
+  user: DeepPartial<User>;
 }

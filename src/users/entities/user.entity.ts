@@ -5,10 +5,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { RolesUsuario } from '../../enums/Roles-Usuarios.enum';
 import { Notice } from 'src/notices/entities/notice.entity';
+import { Manual } from 'src/manuals/entities/manual.entity';
+import { UserActivity } from 'src/user-activities/entities/user-activity.entity';
 
 @Entity('usuarios')
 export class User {
@@ -41,6 +44,12 @@ export class User {
   @UpdateDateColumn()
   fechaActualizacion: Date;
 
-  @OneToMany(() => Notice, notice => notice.user)
+  @OneToMany(() => Notice, notice => notice.user, { eager: true })
   notices: Notice[];
+
+  @OneToMany(() => Manual, manual => manual.user, { eager: true })
+  manuals: Manual[];
+
+  @OneToMany(()=> UserActivity, userActivity => userActivity.user, { eager: true })
+  activities: UserActivity[];
 }

@@ -20,6 +20,5 @@ export class CreateNoticeDto {
   activo: boolean;
 
   @IsNotEmpty()
-  @IsNumber()
   user: DeepPartial<User>;
 }
