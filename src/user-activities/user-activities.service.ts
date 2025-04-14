@@ -4,16 +4,26 @@ import { UpdateUserActivityDto } from './dto/update-user-activity.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserActivity } from './entities/user-activity.entity';
 import { Repository } from 'typeorm';
+import { GamificationService } from 'src/gamification/gamification.service';
 
 @Injectable()
 export class UserActivitiesService {
   constructor(
     @InjectRepository(UserActivity)
     private readonly userActivityRepository: Repository<UserActivity>,
+    private readonly gamificationService: GamificationService,
   ) {}
 
-  create(createUserActivityDto: CreateUserActivityDto) {
-    return this.userActivityRepository.save(createUserActivityDto);
+  async create(createUserActivityDto: CreateUserActivityDto) {
+    const userActivity = await this.userActivityRepository.save(createUserActivityDto);
+
+    // Otorgar puntos al usuario por completar la actividad
+    await this.gamificationService.awardPointsForActivity(
+      userActivity.user.id,
+      userActivity.activity.id,
+    );
+
+    return userActivity;
   }
 
   findAll() {

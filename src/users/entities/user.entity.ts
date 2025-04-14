@@ -6,12 +6,14 @@ import {
   UpdateDateColumn,
   OneToMany,
   ManyToOne,
+  OneToOne,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { RolesUsuario } from '../../enums/Roles-Usuarios.enum';
 import { Notice } from 'src/notices/entities/notice.entity';
 import { Manual } from 'src/manuals/entities/manual.entity';
 import { UserActivity } from 'src/user-activities/entities/user-activity.entity';
+import { UserGamification } from 'src/gamification/entities/user-gamification.entity';
 
 @Entity('usuarios')
 export class User {
@@ -50,6 +52,9 @@ export class User {
   @OneToMany(() => Manual, manual => manual.user, { eager: true })
   manuals: Manual[];
 
-  @OneToMany(()=> UserActivity, userActivity => userActivity.user, { eager: true })
+  @OneToMany(() => UserActivity, userActivity => userActivity.user, { eager: true })
   activities: UserActivity[];
+
+  @OneToOne(() => UserGamification, userGamification => userGamification.user)
+  gamification: UserGamification;
 }

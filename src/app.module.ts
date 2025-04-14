@@ -7,6 +7,7 @@ import { ManualsModule } from './manuals/manuals.module';
 import { NoticesModule } from './notices/notices.module';
 import { ActivitiesModule } from './activities/activities.module';
 import { UserActivitiesModule } from './user-activities/user-activities.module';
+import { GamificationModule } from './gamification/gamification.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { UserActivitiesModule } from './user-activities/user-activities.module';
     NoticesModule,
     ActivitiesModule,
     UserActivitiesModule,
+    GamificationModule,
   ],
   controllers: [],
   providers: [],
