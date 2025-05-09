@@ -28,7 +28,7 @@ export class GamificationService {
         points: 0,
         level: 1,
       });
-      await this.userGamificationRepository.save(userGamification);
+      await this.userGamificationRepository.s
     }
 
     return userGamification;
