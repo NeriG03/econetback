@@ -5,13 +5,13 @@ import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const configService = app.get(ConfigService); //Esto ponlo asi
+  const configService = app.get(ConfigService);
   app.setGlobalPrefix('api');
 
   app.useGlobalPipes(
     new ValidationPipe({ transform: true, whitelist: true, forbidNonWhitelisted: true }),
   );
-  
+
   app.enableCors();
 
   const port = configService.get('PORT', 3000);

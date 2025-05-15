@@ -23,12 +23,15 @@ export class GamificationService {
 
     if (!userGamification) {
       const user = await this.userRepository.findOne({ where: { id: userId } });
+      if (!user) {
+        throw new Error('Usuario no encontrado');
+      }
       userGamification = this.userGamificationRepository.create({
-        user: user!,
+        user,
         points: 0,
         level: 1,
       });
-      await this.userGamificationRepository.s
+      await this.userGamificationRepository.save(userGamification);
     }
 
     return userGamification;
@@ -38,8 +41,6 @@ export class GamificationService {
     const userGamification = await this.getOrCreateUserGamification(userId);
     userGamification.points += points;
 
-    // Calcular nivel basado en puntos
-    // Fórmula simple: cada 100 puntos = 1 nivel
     userGamification.level = Math.floor(userGamification.points / 100) + 1;
 
     return this.userGamificationRepository.save(userGamification);
