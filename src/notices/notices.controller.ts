@@ -19,8 +19,8 @@ import {
 import { Notice } from './entities/notice.entity';
 
 @ApiTags('notices')
-@ApiBearerAuth('JWT-auth')
-@UseGuards(JwtAuthGuard)
+//@ApiBearerAuth('JWT-auth')
+//@UseGuards(JwtAuthGuard)
 @Controller('notices')
 export class NoticesController {
   constructor(private readonly noticesService: NoticesService) {}
@@ -31,8 +31,8 @@ export class NoticesController {
   @ApiResponse({ status: 400, description: 'Datos de entrada inválidos' })
   @ApiResponse({ status: 401, description: 'No autorizado' })
   @ApiResponse({ status: 403, description: 'Acceso prohibido - rol insuficiente' })
-  @UseGuards(RolesGuard)
-  @Roles(RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
+  //@UseGuards(RolesGuard)
+  //@Roles(RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
   @Post()
   @LogRequest()
   create(@Req() req: Request, @Body() createNoticeDto: CreateNoticeDto) {
@@ -43,8 +43,8 @@ export class NoticesController {
   @ApiResponse({ status: 200, description: 'Lista de noticias', type: [Notice] })
   @ApiResponse({ status: 401, description: 'No autorizado' })
   @ApiResponse({ status: 403, description: 'Acceso prohibido - rol insuficiente' })
-  @UseGuards(RolesGuard)
-  @Roles(RolesUsuario.USER, RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
+  //@UseGuards(RolesGuard)
+  //@Roles(RolesUsuario.USER, RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
   @Get()
   @LogRequest()
   findAll(@Req() req: Request) {
@@ -57,8 +57,8 @@ export class NoticesController {
   @ApiResponse({ status: 401, description: 'No autorizado' })
   @ApiResponse({ status: 403, description: 'Acceso prohibido - rol insuficiente' })
   @ApiResponse({ status: 404, description: 'Noticia no encontrada' })
-  @UseGuards(RolesGuard)
-  @Roles(RolesUsuario.USER, RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
+  //@UseGuards(RolesGuard)
+  //@Roles(RolesUsuario.USER, RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
   @Get(':id')
   @LogRequest()
   findOne(@Req() req: Request, @Param('id') id: string) {
@@ -73,8 +73,8 @@ export class NoticesController {
   @ApiResponse({ status: 401, description: 'No autorizado' })
   @ApiResponse({ status: 403, description: 'Acceso prohibido - rol insuficiente' })
   @ApiResponse({ status: 404, description: 'Noticia no encontrada' })
-  @UseGuards(RolesGuard)
-  @Roles(RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
+  //@UseGuards(RolesGuard)
+  //@Roles(RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
   @Patch(':id')
   @LogRequest()
   update(@Req() req: Request, @Param('id') id: string, @Body() updateNoticeDto: UpdateNoticeDto) {
@@ -87,8 +87,8 @@ export class NoticesController {
   @ApiResponse({ status: 401, description: 'No autorizado' })
   @ApiResponse({ status: 403, description: 'Acceso prohibido - rol insuficiente' })
   @ApiResponse({ status: 404, description: 'Noticia no encontrada' })
-  @UseGuards(RolesGuard)
-  @Roles(RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
+  //@UseGuards(RolesGuard)
+  //@Roles(RolesUsuario.SUPER_USER, RolesUsuario.ADMIN, RolesUsuario.SUPER_ADMIN)
   @Delete(':id')
   @LogRequest()
   remove(@Req() req: Request, @Param('id') id: string) {

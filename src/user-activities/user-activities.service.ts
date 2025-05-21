@@ -15,7 +15,10 @@ export class UserActivitiesService {
   ) {}
 
   async create(createUserActivityDto: CreateUserActivityDto) {
-    const userActivity = await this.userActivityRepository.save(createUserActivityDto);
+    const userActivity = await this.userActivityRepository.save({
+      user: { id: createUserActivityDto.userId.id },
+      activity: { id: createUserActivityDto.activityId.id },
+    });
 
     // Otorgar puntos al usuario por completar la actividad
     await this.gamificationService.awardPointsForActivity(
@@ -35,7 +38,15 @@ export class UserActivitiesService {
   }
 
   update(id: number, updateUserActivityDto: UpdateUserActivityDto) {
-    return this.userActivityRepository.update(id, updateUserActivityDto);
+    const { userId, activityId, ...rest } = updateUserActivityDto;
+    const updatePayload: any = { ...rest };
+    if (userId) {
+      updatePayload.user = { id: userId.id };
+    }
+    if (activityId) {
+      updatePayload.activity = { id: activityId.id };
+    }
+    return this.userActivityRepository.update(id, updatePayload);
   }
 
   remove(id: number) {
